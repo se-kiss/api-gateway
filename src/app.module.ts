@@ -4,6 +4,7 @@ import { ConfigModule } from '@nestjs/config';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { PingModule } from './ping/ping.module';
+import { MediaModule } from './media/media.module';
 
 @Module({
   imports: [
@@ -14,6 +15,7 @@ import { PingModule } from './ping/ping.module';
       autoSchemaFile: 'schema.gql',
     }),
     PingModule,
+    MediaModule,
   ],
   controllers: [AppController],
   providers: [AppService],
