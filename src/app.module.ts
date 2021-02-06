@@ -5,6 +5,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { PingModule } from './ping/ping.module';
 import { MediaModule } from './media/media.module';
+import { PlaylistModule } from './playlist/playlist.module';
 
 @Module({
   imports: [
@@ -16,6 +17,7 @@ import { MediaModule } from './media/media.module';
     }),
     PingModule,
     MediaModule,
+    PlaylistModule,
   ],
   controllers: [AppController],
   providers: [AppService],
