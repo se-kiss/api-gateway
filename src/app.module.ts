@@ -10,7 +10,7 @@ import { MediaModule } from './media/media.module';
   imports: [
     ConfigModule.forRoot(),
     GraphQLModule.forRoot({
-      include: [PingModule],
+      include: [PingModule, MediaModule],
       playground: true,
       autoSchemaFile: 'schema.gql',
     }),
