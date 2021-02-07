@@ -1,5 +1,4 @@
 import { InputType, Field } from '@nestjs/graphql';
-import { MediaType } from './playlist.model';
 
 @InputType()
 export class CreatePlaylistArgs {
@@ -14,9 +13,6 @@ export class CreatePlaylistArgs {
 
   @Field(() => [String])
   tagIds: string[];
-
-  @Field(() => MediaType)
-  type: MediaType;
 }
 
 @InputType()
@@ -41,9 +37,6 @@ export class GetPlaylistFilter {
 
   @Field(() => [String], { nullable: true })
   tagIds?: string[];
-
-  @Field(() => MediaType, { nullable: true })
-  type?: MediaType;
 }
 
 @InputType()

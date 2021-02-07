@@ -1,10 +1,4 @@
-import { ObjectType, registerEnumType, Field } from '@nestjs/graphql';
-
-export enum MediaType {
-  CLIP = 1,
-  ARTICLE = 2,
-}
-registerEnumType(MediaType, { name: 'MediaType' });
+import { ObjectType, Field } from '@nestjs/graphql';
 
 @ObjectType()
 export class Playlist {
@@ -22,9 +16,6 @@ export class Playlist {
 
   @Field(() => [String])
   tagIds: string[];
-
-  @Field(() => MediaType)
-  type: MediaType;
 
   @Field(() => String)
   _createdAt: Date;
