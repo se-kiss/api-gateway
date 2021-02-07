@@ -1,4 +1,4 @@
-import { ObjectType, Field, GraphQLISODateTime } from '@nestjs/graphql';
+import { ObjectType, Field } from '@nestjs/graphql';
 
 @ObjectType()
 export class Media {
@@ -20,10 +20,10 @@ export class Media {
   @Field(() => String, { nullable: true })
   description?: string;
 
-  @Field(() => GraphQLISODateTime)
+  @Field(() => String)
   _createdAt: Date;
 
-  @Field(() => GraphQLISODateTime)
+  @Field(() => String)
   _updatedAt: Date;
 
   constructor(args: Media) {
