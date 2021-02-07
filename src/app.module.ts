@@ -11,7 +11,7 @@ import { PlaylistModule } from './playlist/playlist.module';
   imports: [
     ConfigModule.forRoot(),
     GraphQLModule.forRoot({
-      include: [PingModule, MediaModule],
+      include: [PingModule, MediaModule, PlaylistModule],
       playground: true,
       autoSchemaFile: 'schema.gql',
     }),
