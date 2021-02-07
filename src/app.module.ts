@@ -5,17 +5,19 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { PingModule } from './ping/ping.module';
 import { MediaModule } from './media/media.module';
+import { PlaylistModule } from './playlist/playlist.module';
 
 @Module({
   imports: [
     ConfigModule.forRoot(),
     GraphQLModule.forRoot({
-      include: [PingModule, MediaModule],
+      include: [PingModule, MediaModule, PlaylistModule],
       playground: true,
       autoSchemaFile: 'schema.gql',
     }),
     PingModule,
     MediaModule,
+    PlaylistModule,
   ],
   controllers: [AppController],
   providers: [AppService],
