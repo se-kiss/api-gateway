@@ -1,4 +1,10 @@
-import { ObjectType, Field } from '@nestjs/graphql';
+import { ObjectType, Field, registerEnumType } from '@nestjs/graphql';
+
+export enum MediaType {
+  CLIP = 1,
+  ARTICLE = 2,
+}
+registerEnumType(MediaType, { name: 'MediaType' });
 
 @ObjectType()
 export class Media {
@@ -10,6 +16,9 @@ export class Media {
 
   @Field(() => String)
   name: string;
+
+  @Field(() => MediaType)
+  type: MediaType;
 
   @Field(() => String, { nullable: true })
   url?: string;
