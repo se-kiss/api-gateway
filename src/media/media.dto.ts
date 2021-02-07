@@ -1,5 +1,5 @@
 import { InputType, Field } from '@nestjs/graphql';
-import { Media } from './media.model';
+import { Media, MediaType } from './media.model';
 
 @InputType()
 export class CreateMediaArgs
@@ -9,6 +9,9 @@ export class CreateMediaArgs
 
   @Field(() => String)
   name: string;
+
+  @Field(() => MediaType)
+  type: MediaType;
 
   @Field(() => String, { nullable: true })
   url?: string;
@@ -41,8 +44,11 @@ export class UpdateMediaArgs
 
 @InputType()
 export class GetMediaFilter {
-  @Field(() => String)
-  playlistId: string;
+  @Field(() => String, { nullable: true })
+  playlistId?: string;
+
+  @Field(() => MediaType, { nullable: true })
+  type?: MediaType;
 }
 
 @InputType()
