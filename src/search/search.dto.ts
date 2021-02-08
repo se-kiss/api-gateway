@@ -15,5 +15,5 @@ export class SearchArgs {
 @InputType()
 export class DeleteArgs {
   @Field(() => String)
-  mediaId: string;
+  playlistId: string;
 }

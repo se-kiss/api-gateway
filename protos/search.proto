@@ -13,12 +13,11 @@ service SearchService {
 }
 
 message SearchBody {
-  string mediaId = 1;
+  string playlistId = 1;
   string name = 2;
   string ownerName = 3;
   repeated string tags = 4;
   string description = 5;
-  string content = 6;
 }
 
 message SearchArgs {
@@ -36,5 +35,5 @@ message Result {
 }
 
 message DeleteArgs {
-  string mediaId = 1;
+  string playlistId = 1;
 }
