@@ -14,9 +14,6 @@ export class Media {
   @Field(() => String)
   playlistId: string;
 
-  @Field(() => [String])
-  tagIds: string[];
-
   @Field(() => String)
   name: string;
 
@@ -26,8 +23,8 @@ export class Media {
   @Field(() => String, { nullable: true })
   url?: string;
 
-  @Field(() => [String], { nullable: true })
-  paragraph?: string[];
+  @Field(() => String, { nullable: true })
+  content?: string;
 
   @Field(() => String, { nullable: true })
   description?: string;
