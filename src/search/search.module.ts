@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { ClientsModule, Transport } from '@nestjs/microservices';
 import { SearchService } from './search.service';
+import { SearchResolver } from './search.resolver';
 
 @Module({
   imports: [
@@ -18,7 +19,7 @@ import { SearchService } from './search.service';
       },
     ]),
   ],
-  providers: [SearchService],
+  providers: [SearchService, SearchResolver],
   exports: [SearchService],
 })
 export class SearchModule {}

@@ -1,4 +1,4 @@
-import { ObjectType, Field } from '@nestjs/graphql';
+import { Field, ObjectType } from '@nestjs/graphql';
 
 @ObjectType()
 export class SearchBody {
@@ -16,4 +16,10 @@ export class SearchBody {
 
   @Field(() => String, { nullable: true })
   description?: string;
+}
+
+@ObjectType()
+export class StatusCode {
+  @Field(() => Number)
+  statusCode: number;
 }
