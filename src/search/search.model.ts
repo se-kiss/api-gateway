@@ -14,6 +14,9 @@ export class SearchBody {
   @Field(() => [String])
   tags: string[];
 
+  @Field(() => [String])
+  types: string[];
+
   @Field(() => String, { nullable: true })
   description?: string;
 }

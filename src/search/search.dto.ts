@@ -10,6 +10,12 @@ export class SearchArgs {
 
   @Field(() => Number)
   size: number;
+
+  @Field(() => [String], { nullable: true })
+  tags?: string[];
+
+  @Field(() => [String], { nullable: true })
+  types?: string[];
 }
 
 @InputType()

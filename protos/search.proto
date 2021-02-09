@@ -18,12 +18,15 @@ message SearchBody {
   string ownerName = 3;
   repeated string tags = 4;
   string description = 5;
+  repeated string types = 6;
 }
 
 message SearchArgs {
   string text = 1;
   int32 from = 2;
   int32 size = 3;
+  repeated string types = 4;
+  repeated string tags = 5;
 }
 
 message StatusCode {
