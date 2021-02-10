@@ -9,7 +9,7 @@ import { Reaction } from './reaction.model';
 
 export interface ReactionGrpcService {
   createReaction(payload: CreateReactionArgs): Observable<Reaction>;
-  getReaction(payload: ReactionId): Observable<{ Reaction: Reaction[] }>;
+  getReaction(payload: ReactionId): Observable<{ reaction: Reaction[] }>;
   updateReaction(payload: UpdateReactionArgs): Observable<Reaction>;
   deleteReaction(payload: ReactionId): Observable<Reaction>;
   upVote(payload: VoteArgs): Observable<Reaction>;

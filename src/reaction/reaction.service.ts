@@ -9,7 +9,7 @@ export class ReactionService {
   private reactionService: ReactionGrpcService;
 
   constructor(@Inject('REACTION_PACKAGE') private client: ClientGrpc) {
-    this.reactionService = this.client.getService<ReactionGrpcService>('ReactionGrpcService');
+    this.reactionService = this.client.getService<ReactionGrpcService>('ReactionService');
   }
 
   async createReaction(payload: CreateReactionArgs): Promise<Reaction> {
@@ -17,10 +17,10 @@ export class ReactionService {
   }
 
   async getReaction(payload: ReactionId): Promise<Reaction[]> {
-    const { Reaction } = await this.reactionService
+    const { reaction } = await this.reactionService
       .getReaction(payload)
       .toPromise();
-    return Reaction || [];
+    return reaction || [];
   }
 
   async updateReaction(payload: UpdateReactionArgs): Promise<Reaction> {
