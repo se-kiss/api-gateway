@@ -1,0 +1,25 @@
+import { Module } from '@nestjs/common';
+import { ConfigModule } from '@nestjs/config';
+import { ClientsModule, Transport } from '@nestjs/microservices';
+import { SearchService } from './search.service';
+import { SearchResolver } from './search.resolver';
+
+@Module({
+  imports: [
+    ConfigModule.forRoot(),
+    ClientsModule.register([
+      {
+        name: 'SEARCH_PACKAGE',
+        transport: Transport.GRPC,
+        options: {
+          url: process.env.SEARCH_SERVICE,
+          package: 'search',
+          protoPath: 'protos/search.proto',
+        },
+      },
+    ]),
+  ],
+  providers: [SearchService, SearchResolver],
+  exports: [SearchService],
+})
+export class SearchModule {}
