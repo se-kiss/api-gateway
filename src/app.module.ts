@@ -14,10 +14,11 @@ import { ReactionModule } from './reaction/reaction.module';
     ConfigModule.forRoot(),
     GraphQLModule.forRoot({
       include: [
-        PingModule, 
-        MediaModule, 
+        PingModule,
+        MediaModule,
         PlaylistModule,
         ReactionModule,
+        SearchModule,
       ],
       playground: true,
       autoSchemaFile: 'schema.gql',
