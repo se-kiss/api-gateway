@@ -2,8 +2,8 @@ import { Observable } from 'rxjs';
 import {
   CreateReactionArgs,
   UpdateReactionArgs,
-  ReactionId, 
-  VoteArgs
+  ReactionId,
+  VoteArgs,
 } from './reaction.dto';
 import { Reaction } from './reaction.model';
 

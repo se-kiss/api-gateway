@@ -2,7 +2,7 @@ import { ObjectType, Field, registerEnumType } from '@nestjs/graphql';
 
 export enum ReactionType {
   COMMENT = 0,
-  POST = 1
+  POST = 1,
 }
 registerEnumType(ReactionType, { name: 'ReactionType' });
 

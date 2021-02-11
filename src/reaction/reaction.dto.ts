@@ -1,44 +1,44 @@
 import { InputType, Field } from '@nestjs/graphql';
-import { Reaction, ReactionType } from './reaction.model'
+import { Reaction, ReactionType } from './reaction.model';
 
 @InputType()
 export class CreateReactionArgs {
   @Field(() => String)
-  _id: string
+  _id: string;
 
   @Field(() => [String], { nullable: true })
-  upVote?: string[]
+  upVote?: string[];
 
   @Field(() => [String], { nullable: true })
-  downVote?: string[]
+  downVote?: string[];
 
   @Field(() => ReactionType)
-  reactionType: ReactionType
+  reactionType: ReactionType;
 }
 
 @InputType()
 export class ReactionId {
   @Field(() => String)
-  _id: string
+  _id: string;
 }
 
 @InputType()
 export class UpdateReactionArgs {
   @Field(() => String)
-  _id: string
+  _id: string;
 
   @Field(() => [String], { nullable: true })
-  upVote?: string[]
+  upVote?: string[];
 
   @Field(() => [String], { nullable: true })
-  downVote?: string[]
+  downVote?: string[];
 }
 
 @InputType()
 export class VoteArgs {
   @Field(() => String)
-  userId: string
+  userId: string;
 
   @Field(() => String)
-  targerId: string
+  targerId: string;
 }

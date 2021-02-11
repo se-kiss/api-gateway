@@ -19,6 +19,6 @@ import { ClientsModule, Transport } from '@nestjs/microservices';
       },
     ]),
   ],
-  providers: [ReactionService, ReactionResolver]
+  providers: [ReactionService, ReactionResolver],
 })
 export class ReactionModule {}

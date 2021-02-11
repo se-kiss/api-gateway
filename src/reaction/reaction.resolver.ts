@@ -1,5 +1,10 @@
 import { Resolver, Query, Mutation, Args } from '@nestjs/graphql';
-import { CreateReactionArgs, ReactionId, UpdateReactionArgs, VoteArgs } from './reaction.dto';
+import {
+  CreateReactionArgs,
+  ReactionId,
+  UpdateReactionArgs,
+  VoteArgs,
+} from './reaction.dto';
 import { Reaction } from './reaction.model';
 import { ReactionService } from './reaction.service';
 
@@ -17,14 +22,16 @@ export class ReactionResolver {
 
   @Mutation(() => Reaction)
   async createReaction(
-    @Args({ name: 'args', type: () => CreateReactionArgs }) args: CreateReactionArgs,
+    @Args({ name: 'args', type: () => CreateReactionArgs })
+    args: CreateReactionArgs,
   ): Promise<Reaction> {
     return await this.reactionService.createReaction(args);
   }
 
   @Mutation(() => Reaction)
   async updateReaction(
-    @Args({ name: 'args', type: () => UpdateReactionArgs }) args: UpdateReactionArgs,
+    @Args({ name: 'args', type: () => UpdateReactionArgs })
+    args: UpdateReactionArgs,
   ): Promise<Reaction> {
     return await this.reactionService.updateReaction(args);
   }
