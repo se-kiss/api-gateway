@@ -7,6 +7,9 @@ export class CreateMediaArgs
   @Field(() => String)
   playlistId: string;
 
+  @Field(() => [String])
+  tagIds: string[];
+
   @Field(() => String)
   name: string;
 
@@ -16,8 +19,8 @@ export class CreateMediaArgs
   @Field(() => String, { nullable: true })
   url?: string;
 
-  @Field(() => String, { nullable: true })
-  content?: string;
+  @Field(() => [String], { nullable: true })
+  paragraph?: string[];
 
   @Field(() => String, { nullable: true })
   description?: string;
@@ -32,11 +35,14 @@ export class UpdateMediaArgs
   @Field(() => String, { nullable: true })
   name?: string;
 
+  @Field(() => [String], { nullable: true })
+  tagIds?: string[];
+
   @Field(() => String, { nullable: true })
   url?: string;
 
-  @Field(() => String, { nullable: true })
-  content?: string;
+  @Field(() => [String], { nullable: true })
+  paragraph?: string[];
 
   @Field(() => String, { nullable: true })
   description?: string;
@@ -46,6 +52,9 @@ export class UpdateMediaArgs
 export class GetMediaFilter {
   @Field(() => String, { nullable: true })
   playlistId?: string;
+
+  @Field(() => [String], { nullable: true })
+  tagIds?: string[];
 
   @Field(() => MediaType, { nullable: true })
   type?: MediaType;

@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api-v1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: api-v1
+  template:
+    metadata:
+      labels:
+        app: api-v1
+    spec:
+      containers:
+        - name: api
+          image: registry.gitlab.com/nestz671/kiss-container-registries/api:0.0.1
+          imagePullPolicy: Always
+          ports:
+            - name: main-port
+              containerPort: 3000
+          env:
+            - name: REACTION_SERVICE
+              value: 'kiss-reaction:5000'
+            - name: PLAYLIST_SERVICE
+              value: ''
+            - name: MEDIA_SERVICE
+              value: ''
+          resources:
+            limits:
+              cpu: 250m
+              memory: 250Mi
+            requests:
+              cpu: 25m
+              memory: 100Mi
+      imagePullSecrets:
+        - name: gitlab-docker-registry
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: api-v1
+spec:
+  type: ClusterIP 
+  selector:
+    app: api-v1
+  ports:
+    - port: 80
+      targetPort: 3000
