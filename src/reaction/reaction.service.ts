@@ -24,10 +24,10 @@ export class ReactionService {
   }
 
   async getReactions(payload: GetReactionsArgs): Promise<Reaction[]> {
-    const { reaction } = await this.reactionService
+    const { reactions } = await this.reactionService
       .getReactions(payload || {})
       .toPromise();
-    return reaction || [];
+    return reactions || [];                                                                                                                                                                                                                                                                                                      
   }
 
   async deleteReaction(payload: ReactionId): Promise<Reaction> {

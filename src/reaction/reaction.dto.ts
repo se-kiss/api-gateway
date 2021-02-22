@@ -33,3 +33,8 @@ export class VoteArgs {
   @Field(() => String)
   targerId: string;
 }
+
+@InputType()
+export class Reactions {
+  reactions: Reaction[]
+}

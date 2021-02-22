@@ -14,7 +14,7 @@ export class ReactionResolver {
 
   @Query(() => [Reaction])
   async reaction(
-    @Args({ name: 'args', type: () => ReactionId, nullable: true })
+    @Args({ name: 'args', type: () => GetReactionsArgs, nullable: true })
     args: GetReactionsArgs,
   ): Promise<Reaction[]> {
     return await this.reactionService.getReactions(args);
