@@ -3,9 +3,6 @@ import { Reaction, ReactionType } from './reaction.model';
 
 @InputType()
 export class CreateReactionArgs {
-  @Field(() => String)
-  _id: string;
-
   @Field(() => [String], { nullable: true })
   upVote?: string[];
 
@@ -23,15 +20,9 @@ export class ReactionId {
 }
 
 @InputType()
-export class UpdateReactionArgs {
-  @Field(() => String)
-  _id: string;
-
+export class GetReactionsArgs {
   @Field(() => [String], { nullable: true })
-  upVote?: string[];
-
-  @Field(() => [String], { nullable: true })
-  downVote?: string[];
+  ids?: string[];
 }
 
 @InputType()

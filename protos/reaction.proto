@@ -4,42 +4,45 @@ package reaction;
 
 service ReactionService {
   rpc CreateReaction (CreateReactionArgs) returns (Reaction) {}
-  rpc GetReaction (ReactionId) returns (Reaction) {}
-  rpc UpdateReaction (UpdateReactionArgs) returns (Reaction) {}
+  rpc GetReactions (GetReactionsArgs) returns (Reactions) {}
   rpc DeleteReaction (ReactionId) returns (Reaction) {}
-  rpc UpVote (VoteArgs) returns (Reaction);
-  rpc DownVote (VoteArgs) returns (Reaction);
+  rpc UpVote (VoteArgs) returns (Reaction) {}
+  rpc DownVote (VoteArgs) returns (Reaction) {}
 }
 
-message VoteArgs {
-  string userId = 1;
-  string targetId = 2;
+enum ReactionType {
+  COMMENT = 0;
+  POST = 1;
 }
 
 message ReactionId {
   string _id = 1;
 }
 
-message CreateReactionArgs {
-  required string _id = 1;
-  repeated string upVote = 3;
-  repeated string downVote = 4;
-  enum ReactionType {
-    COMMENT = 0;
-    POST = 1;
-  }
-  required ReactionType reactionType = 5;
+message VoteArgs {
+  string targetId = 1;
+  string userId = 2;
 }
 
-message UpdateReactionArgs {
-  required string _id = 1;
-  repeated string upVote = 3;
-  repeated string downVote = 4;
+message GetReactionsArgs {
+  repeated string ids = 1;
+}
+
+message CreateReactionArgs {
+  repeated string upVote = 1;
+  repeated string downVote = 2;
+  ReactionType reactionType = 3;
 }
 
 message Reaction {
   string _id = 1;
-  repeated string upVote = 3;
-  repeated string downVote = 4;
-  ReactionType reactionType = 5;
+  repeated string upVote = 2;
+  repeated string downVote = 3;
+  ReactionType reactionType = 4;
+  string _createdAt = 5;
+  string _updatedAt = 6;
+}
+
+message Reactions {
+  repeated Reaction reactions = 1;
 }

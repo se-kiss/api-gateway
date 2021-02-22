@@ -3,8 +3,8 @@ import { Injectable, Inject } from '@nestjs/common';
 import { ReactionGrpcService } from './reaction.grpc-service';
 import {
   CreateReactionArgs,
+  GetReactionsArgs,
   ReactionId,
-  UpdateReactionArgs,
   VoteArgs,
 } from './reaction.dto';
 import { Reaction } from './reaction.model';
@@ -23,15 +23,11 @@ export class ReactionService {
     return await this.reactionService.createReaction(payload).toPromise();
   }
 
-  async getReaction(payload: ReactionId): Promise<Reaction[]> {
+  async getReactions(payload: GetReactionsArgs): Promise<Reaction[]> {
     const { reaction } = await this.reactionService
-      .getReaction(payload)
+      .getReactions(payload || {})
       .toPromise();
     return reaction || [];
-  }
-
-  async updateReaction(payload: UpdateReactionArgs): Promise<Reaction> {
-    return await this.reactionService.updateReaction(payload).toPromise();
   }
 
   async deleteReaction(payload: ReactionId): Promise<Reaction> {
