@@ -8,6 +8,7 @@ import { MediaModule } from './media/media.module';
 import { PlaylistModule } from './playlist/playlist.module';
 import { SearchModule } from './search/search.module';
 import { ReactionModule } from './reaction/reaction.module';
+import { TagModule } from './tag/tag.module';
 
 @Module({
   imports: [
@@ -19,6 +20,7 @@ import { ReactionModule } from './reaction/reaction.module';
         PlaylistModule,
         ReactionModule,
         SearchModule,
+        TagModule,
       ],
       playground: true,
       autoSchemaFile: 'schema.gql',
@@ -28,6 +30,7 @@ import { ReactionModule } from './reaction/reaction.module';
     PlaylistModule,
     SearchModule,
     ReactionModule,
+    TagModule,
   ],
   controllers: [AppController],
   providers: [AppService],
