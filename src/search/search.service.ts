@@ -19,8 +19,10 @@ export class SearchService {
   }
 
   async search(payload: SearchArgs): Promise<string[]> {
-    const { res } = await this.searchService.search(payload).toPromise();
-    return res || [];
+    const { playlistIds } = await this.searchService
+      .search(payload)
+      .toPromise();
+    return playlistIds || [];
   }
 
   async update(payload: SearchBody): Promise<StatusCode> {
