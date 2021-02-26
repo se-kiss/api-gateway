@@ -1,16 +1,16 @@
 import { Resolver, Mutation, Query, Args } from '@nestjs/graphql';
 import { SearchService } from './search.service';
-import { StatusCode, SearchBody } from './search.model';
+import { StatusCode } from './search.model';
 import { SearchArgs } from './search.dto';
 
 @Resolver()
 export class SearchResolver {
   constructor(private readonly searchService: SearchService) {}
 
-  @Query(() => [SearchBody])
+  @Query(() => [String])
   async search(
     @Args({ name: 'args', type: () => SearchArgs }) args: SearchArgs,
-  ): Promise<SearchBody[]> {
+  ): Promise<string[]> {
     return await this.searchService.search(args);
   }
 

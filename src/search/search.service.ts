@@ -18,7 +18,7 @@ export class SearchService {
     return await this.searchService.indexMedia(payload).toPromise();
   }
 
-  async search(payload: SearchArgs): Promise<SearchBody[]> {
+  async search(payload: SearchArgs): Promise<string[]> {
     const { res } = await this.searchService.search(payload).toPromise();
     return res || [];
   }
