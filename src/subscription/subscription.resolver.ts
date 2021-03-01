@@ -13,7 +13,7 @@ export class SubscriptionResolver {
   constructor(private readonly subscriptionService: SubscriptionService) {}
 
   @Query(() => [Subscription])
-  async Subscriptions(
+  async subscriptions(
     @Args({ name: 'args', type: () => GetSubscriptionsArgs, nullable: true })
     args: GetSubscriptionsArgs,
   ): Promise<Subscription[]> {

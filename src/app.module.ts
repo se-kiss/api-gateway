@@ -24,6 +24,7 @@ import { SubscriptionModule } from './subscription/subscription.module';
         SearchModule,
         TagModule,
         NotificationModule,
+        SubscriptionModule,
       ],
       playground: true,
       autoSchemaFile: 'schema.gql',
