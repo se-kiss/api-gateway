@@ -36,5 +36,5 @@ export class UpdateSubscriptionArgs {
 
 @InputType()
 export class Subscriptions {
-  Subscriptions: Subscription[]
+  subscriptions: Subscription[]
 }

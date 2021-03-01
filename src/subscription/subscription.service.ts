@@ -24,10 +24,10 @@ export class SubscriptionService {
   }
 
   async getSubscriptions(payload: GetSubscriptionsArgs): Promise<Subscription[]> {
-    const { Subscriptions } = await this.subscriptionService
+    const { subscriptions } = await this.subscriptionService
       .getSubscriptions(payload || {})
       .toPromise();
-    return Subscriptions || [];
+    return subscriptions || [];
   }
 
   async updateSubscription(payload: UpdateSubscriptionArgs): Promise<Subscription> {
