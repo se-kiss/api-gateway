@@ -9,6 +9,7 @@ import { PlaylistModule } from './playlist/playlist.module';
 import { SearchModule } from './search/search.module';
 import { ReactionModule } from './reaction/reaction.module';
 import { TagModule } from './tag/tag.module';
+import { NotificationModule } from './notification/notification.module';
 
 @Module({
   imports: [
@@ -31,6 +32,7 @@ import { TagModule } from './tag/tag.module';
     SearchModule,
     ReactionModule,
     TagModule,
+    NotificationModule,
   ],
   controllers: [AppController],
   providers: [AppService],
