@@ -22,6 +22,7 @@ import { NotificationModule } from './notification/notification.module';
         ReactionModule,
         SearchModule,
         TagModule,
+        NotificationModule,
       ],
       playground: true,
       autoSchemaFile: 'schema.gql',

@@ -12,7 +12,7 @@ export class Notification {
   _id: string;
   
   @Field(() => NotificationType, { nullable: true })
-  NotificationType: string;
+  notificationType: string;
 
   @Field(() => String)
   _createdAt: Date;

@@ -4,7 +4,7 @@ import { Notification, NotificationType } from './notification.model';
 @InputType()
 export class CreateNotificationArgs {
   @Field(() => NotificationType)
-  NotificationType: NotificationType;
+  notificationType: NotificationType;
 }
 
 @InputType()
@@ -21,5 +21,5 @@ export class GetNotificationsArgs {
 
 @InputType()
 export class Notifications {
-  Notifications: Notification[]
+  notifications: Notification[]
 }

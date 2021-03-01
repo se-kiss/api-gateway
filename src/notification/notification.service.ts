@@ -23,10 +23,10 @@ export class NotificationService {
   }
 
   async getNotifications(payload: GetNotificationsArgs): Promise<Notification[]> {
-    const { Notifications } = await this.notificationService
+    const { notifications } = await this.notificationService
       .getNotifications(payload || {})
       .toPromise();
-    return Notifications || [];                                                                                                                                                                                                                                                                                                      
+    return notifications || [];                                                                                                                                                                                                                                                                                                      
   }
 
   async deleteNotification(payload: NotificationId): Promise<Notification> {

@@ -9,6 +9,6 @@ import { Notification } from './notification.model';
 
 export interface NotificationGrpcService {
   createNotification(payload: CreateNotificationArgs): Observable<Notification>;
-  getNotifications(payload: GetNotificationsArgs): Observable<Notifications>;
+  getNotifications(payload: GetNotificationsArgs): Observable<{ notifications: Notification[] }>;
   deleteNotification(payload: NotificationId): Observable<Notification>;
 }

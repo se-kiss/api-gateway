@@ -12,7 +12,7 @@ export class NotificationResolver {
   constructor(private readonly notificationService: NotificationService) {}
 
   @Query(() => [Notification])
-  async Notification(
+  async notification(
     @Args({ name: 'args', type: () => GetNotificationsArgs, nullable: true })
     args: GetNotificationsArgs,
   ): Promise<Notification[]> {
