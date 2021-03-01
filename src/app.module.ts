@@ -10,6 +10,7 @@ import { SearchModule } from './search/search.module';
 import { ReactionModule } from './reaction/reaction.module';
 import { TagModule } from './tag/tag.module';
 import { NotificationModule } from './notification/notification.module';
+import { SubscriptionModule } from './subscription/subscription.module';
 
 @Module({
   imports: [
@@ -34,6 +35,7 @@ import { NotificationModule } from './notification/notification.module';
     ReactionModule,
     TagModule,
     NotificationModule,
+    SubscriptionModule,
   ],
   controllers: [AppController],
   providers: [AppService],

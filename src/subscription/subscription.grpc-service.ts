@@ -13,4 +13,5 @@ export interface SubscriptionGrpcService {
   getSubscriptions(payload: GetSubscriptionsArgs): Observable<Subscriptions>;
   updateSubscription(payload: UpdateSubscriptionArgs): Observable<Subscription>
   deleteSubscription(payload: SubscriptionId): Observable<Subscription>;
+  unFollow(id: SubscriptionId,targetId: String): Observable<Subscription>
 }
