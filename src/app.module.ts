@@ -11,6 +11,7 @@ import { ReactionModule } from './reaction/reaction.module';
 import { TagModule } from './tag/tag.module';
 import { NotificationModule } from './notification/notification.module';
 import { SubscriptionModule } from './subscription/subscription.module';
+import { UserModule } from './user/user.module';
 
 @Module({
   imports: [
@@ -25,6 +26,7 @@ import { SubscriptionModule } from './subscription/subscription.module';
         TagModule,
         NotificationModule,
         SubscriptionModule,
+        UserModule,
       ],
       playground: true,
       autoSchemaFile: 'schema.gql',
@@ -37,6 +39,7 @@ import { SubscriptionModule } from './subscription/subscription.module';
     TagModule,
     NotificationModule,
     SubscriptionModule,
+    UserModule,
   ],
   controllers: [AppController],
   providers: [AppService],
