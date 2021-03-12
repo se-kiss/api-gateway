@@ -9,6 +9,8 @@ import { PlaylistModule } from './playlist/playlist.module';
 import { SearchModule } from './search/search.module';
 import { ReactionModule } from './reaction/reaction.module';
 import { TagModule } from './tag/tag.module';
+import { NotificationModule } from './notification/notification.module';
+import { SubscriptionModule } from './subscription/subscription.module';
 
 @Module({
   imports: [
@@ -21,6 +23,8 @@ import { TagModule } from './tag/tag.module';
         ReactionModule,
         SearchModule,
         TagModule,
+        NotificationModule,
+        SubscriptionModule,
       ],
       playground: true,
       autoSchemaFile: 'schema.gql',
@@ -31,6 +35,8 @@ import { TagModule } from './tag/tag.module';
     SearchModule,
     ReactionModule,
     TagModule,
+    NotificationModule,
+    SubscriptionModule,
   ],
   controllers: [AppController],
   providers: [AppService],
