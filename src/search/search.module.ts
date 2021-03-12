@@ -12,7 +12,7 @@ import { SearchResolver } from './search.resolver';
         name: 'SEARCH_PACKAGE',
         transport: Transport.GRPC,
         options: {
-          url: process.env.SEARCH_SERVICE,
+          url: process.env.MEDIA_SERVICE,
           package: 'search',
           protoPath: 'protos/search.proto',
         },

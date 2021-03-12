@@ -12,7 +12,7 @@ import { CommentResolver } from './comment.resolver';
         name: 'COMMENT_PACKAGE',
         transport: Transport.GRPC,
         options: {
-          url: process.env.COMMENT_SERVICE,
+          url: process.env.MEDIA_SERVICE,
           package: 'comment',
           protoPath: 'protos/comment.proto',
         },
