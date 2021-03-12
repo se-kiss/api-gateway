@@ -12,6 +12,7 @@ import { TagModule } from './tag/tag.module';
 import { NotificationModule } from './notification/notification.module';
 import { SubscriptionModule } from './subscription/subscription.module';
 import { UserModule } from './user/user.module';
+import { CommentModule } from './comment/comment.module';
 
 @Module({
   imports: [
@@ -27,6 +28,7 @@ import { UserModule } from './user/user.module';
         NotificationModule,
         SubscriptionModule,
         UserModule,
+        CommentModule,
       ],
       playground: true,
       autoSchemaFile: 'schema.gql',
@@ -40,6 +42,7 @@ import { UserModule } from './user/user.module';
     NotificationModule,
     SubscriptionModule,
     UserModule,
+    CommentModule,
   ],
   controllers: [AppController],
   providers: [AppService],

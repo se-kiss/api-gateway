@@ -1,0 +1,55 @@
+import { Resolver, Query, Args, Mutation } from '@nestjs/graphql';
+import { CommentService } from './comment.service';
+import { Comment, CommentForMedia } from './comment.model';
+import {
+  GetCommentsArgs,
+  CommentsForMediaArgs,
+  CreateCommentArgs,
+  UpdateCommentArgs,
+  DeleteCommentArgs,
+} from './comment.dto';
+
+@Resolver()
+export class CommentResolver {
+  constructor(private readonly commentService: CommentService) {}
+
+  @Query(() => [Comment])
+  async comments(
+    @Args({ name: 'args', type: () => GetCommentsArgs, nullable: true })
+    args: GetCommentsArgs,
+  ): Promise<Comment[]> {
+    return await this.commentService.getComments(args);
+  }
+
+  @Query(() => [CommentForMedia])
+  async commentsForMedia(
+    @Args({ name: 'args', type: () => CommentsForMediaArgs })
+    args: CommentsForMediaArgs,
+  ): Promise<CommentForMedia[]> {
+    return await this.commentService.commentsForMedia(args);
+  }
+
+  @Mutation(() => Comment)
+  async createComment(
+    @Args({ name: 'args', type: () => CreateCommentArgs })
+    args: CreateCommentArgs,
+  ): Promise<Comment> {
+    return await this.commentService.createComment(args);
+  }
+
+  @Mutation(() => Comment)
+  async updateComment(
+    @Args({ name: 'args', type: () => UpdateCommentArgs })
+    args: UpdateCommentArgs,
+  ): Promise<Comment> {
+    return await this.commentService.updateComment(args);
+  }
+
+  @Mutation(() => Comment)
+  async deleteComment(
+    @Args({ name: 'args', type: () => DeleteCommentArgs })
+    args: DeleteCommentArgs,
+  ): Promise<Comment> {
+    return await this.commentService.deleteComment(args);
+  }
+}
