@@ -12,7 +12,7 @@ import { ClientsModule, Transport } from '@nestjs/microservices';
         name: 'PLAYLIST_PACKAGE',
         transport: Transport.GRPC,
         options: {
-          url: process.env.MEDIA_SERVICE,
+          url: process.env.PLAYLIST_SERVICE,
           package: 'playlist',
           protoPath: 'protos/playlist.proto',
         },

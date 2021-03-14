@@ -1,4 +1,4 @@
-name: api-gateway
+name: api-v1
 image: okteto/node:12
 command: bash
 sync:
@@ -6,3 +6,7 @@ sync:
 forward:
 - 9229:9229
 - 3000:3000
+resources:
+  limits:
+    cpu: "1"
+    memory: 2Gi
