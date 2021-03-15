@@ -16,12 +16,15 @@ import {
 } from './user.dto';
 import { PlaylistService } from '../playlist/playlist.service';
 import { Playlist } from '../playlist/playlist.model';
+import { CommentService } from '../comment/comment.service';
+import { Comment } from 'src/comment/comment.model';
 
 @Resolver(() => User)
 export class UserResolver {
   constructor(
     private readonly userService: UserService,
     private readonly playlistService: PlaylistService,
+    private readonly commentService: CommentService,
   ) {}
 
   @Query(() => [User])
@@ -58,5 +61,10 @@ export class UserResolver {
     return await this.playlistService.getPlaylists({
       filters: { ownerId: _id },
     });
+  }
+
+  @ResolveField(() => [Comment])
+  async comments(@Parent() { _id }: User): Promise<Comment[]> {
+    return await this.commentService.getComments({ filters: { userId: _id } });
   }
 }
