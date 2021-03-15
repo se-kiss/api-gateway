@@ -66,7 +66,7 @@ export class GetMediaArgs {
   ids?: string[];
 
   @Field(() => GetMediaFilter, { nullable: true })
-  filter?: GetMediaFilter;
+  filters?: GetMediaFilter;
 }
 
 @InputType()

@@ -55,6 +55,6 @@ export class TagResolver {
 
   @ResolveField(() => [Media])
   async media(@Parent() { _id }: Tag): Promise<Media[]> {
-    return await this.mediaService.getMedia({ filter: { tagIds: [_id] } });
+    return await this.mediaService.getMedia({ filters: { tagIds: [_id] } });
   }
 }
