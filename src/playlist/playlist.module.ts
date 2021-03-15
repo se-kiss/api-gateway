@@ -4,6 +4,7 @@ import { ClientsModule, Transport } from '@nestjs/microservices';
 import { PlaylistService } from './playlist.service';
 import { PlaylistResolver } from './playlist.resolver';
 import { MediaModule } from '../media/media.module';
+import { UserModule } from '../user/user.module';
 
 @Module({
   imports: [
@@ -20,6 +21,7 @@ import { MediaModule } from '../media/media.module';
       },
     ]),
     forwardRef(() => MediaModule),
+    forwardRef(() => UserModule),
   ],
   providers: [PlaylistService, PlaylistResolver],
   exports: [PlaylistService],

@@ -16,12 +16,15 @@ import {
 } from './playlist.dto';
 import { Media } from '../media/media.model';
 import { MediaService } from '../media/media.service';
+import { UserService } from '../user/user.service';
+import { User } from '../user/user.model';
 
 @Resolver(() => Playlist)
 export class PlaylistResolver {
   constructor(
     private readonly playlistService: PlaylistService,
     private readonly mediaService: MediaService,
+    private readonly userService: UserService,
   ) {}
 
   @Query(() => [Playlist])
@@ -59,5 +62,11 @@ export class PlaylistResolver {
   @ResolveField(() => [Media])
   async media(@Parent() { _id }: Playlist): Promise<Media[]> {
     return await this.mediaService.getMedia({ filters: { playlistId: _id } });
+  }
+
+  @ResolveField(() => User)
+  async user(@Parent() { ownerId }: Playlist): Promise<User> {
+    const res = await this.userService.getUsers({ ids: [ownerId] });
+    return res[0];
   }
 }
