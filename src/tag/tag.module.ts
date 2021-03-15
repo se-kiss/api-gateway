@@ -13,7 +13,7 @@ import { MediaModule } from '../media/media.module';
         name: 'TAG_PACKAGE',
         transport: Transport.GRPC,
         options: {
-          url: process.env.MEDIA_SERVICE,
+          url: process.env.TAG_SERVICE,
           package: 'tag',
           protoPath: 'protos/tag.proto',
         },
