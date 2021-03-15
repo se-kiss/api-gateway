@@ -5,6 +5,7 @@ import { PlaylistService } from './playlist.service';
 import { PlaylistResolver } from './playlist.resolver';
 import { MediaModule } from '../media/media.module';
 import { UserModule } from '../user/user.module';
+import { TagModule } from '../tag/tag.module';
 
 @Module({
   imports: [
@@ -22,6 +23,7 @@ import { UserModule } from '../user/user.module';
     ]),
     forwardRef(() => MediaModule),
     forwardRef(() => UserModule),
+    forwardRef(() => TagModule),
   ],
   providers: [PlaylistService, PlaylistResolver],
   exports: [PlaylistService],
