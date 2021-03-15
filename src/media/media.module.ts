@@ -4,6 +4,7 @@ import { ClientsModule, Transport } from '@nestjs/microservices';
 import { MediaService } from './media.service';
 import { MediaResolver } from './media.resolver';
 import { TagModule } from '../tag/tag.module';
+import { PlaylistModule } from '../playlist/playlist.module';
 
 @Module({
   imports: [
@@ -20,6 +21,7 @@ import { TagModule } from '../tag/tag.module';
       },
     ]),
     forwardRef(() => TagModule),
+    forwardRef(() => PlaylistModule),
   ],
   providers: [MediaService, MediaResolver],
   exports: [MediaService],
