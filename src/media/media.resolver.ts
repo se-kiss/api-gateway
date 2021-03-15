@@ -18,6 +18,8 @@ import { Tag } from '../tag/tag.model';
 import { TagService } from '../tag/tag.service';
 import { PlaylistService } from '../playlist/playlist.service';
 import { Playlist } from '../playlist/playlist.model';
+import { CommentService } from '../comment/comment.service';
+import { Comment } from 'src/comment/comment.model';
 
 @Resolver(() => Media)
 export class MediaResolver {
@@ -25,6 +27,7 @@ export class MediaResolver {
     private readonly mediaService: MediaService,
     private readonly tagService: TagService,
     private readonly playlistService: PlaylistService,
+    private readonly commentService: CommentService,
   ) {}
 
   @Query(() => [Media])
@@ -65,5 +68,10 @@ export class MediaResolver {
   async playlist(@Parent() { playlistId }: Media): Promise<Playlist> {
     const res = await this.playlistService.getPlaylists({ ids: [playlistId] });
     return res[0];
+  }
+
+  @ResolveField(() => [Comment])
+  async comments(@Parent() { _id }: Media): Promise<Comment[]> {
+    return await this.commentService.getComments({ filters: { mediaId: _id } });
   }
 }
