@@ -31,6 +31,9 @@ export class GetCommentsFilters {
 
   @Field(() => String, { nullable: true })
   mediaId?: string;
+
+  @Field(() => String, { nullable: true })
+  userId?: string;
 }
 
 @InputType()
