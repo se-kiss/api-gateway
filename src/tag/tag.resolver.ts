@@ -1,4 +1,11 @@
-import { Resolver, Query, Mutation, Args } from '@nestjs/graphql';
+import {
+  Resolver,
+  Query,
+  Mutation,
+  Args,
+  ResolveField,
+  Parent,
+} from '@nestjs/graphql';
 import { TagService } from './tag.service';
 import {
   GetTagsArgs,
@@ -7,10 +14,15 @@ import {
   DeleteTagArgs,
 } from './tag.dto';
 import { Tag } from './tag.model';
+import { Media } from '../media/media.model';
+import { MediaService } from '../media/media.service';
 
-@Resolver()
+@Resolver(() => Tag)
 export class TagResolver {
-  constructor(private readonly tagService: TagService) {}
+  constructor(
+    private readonly tagService: TagService,
+    private readonly mediaService: MediaService,
+  ) {}
 
   @Query(() => [Tag])
   async tag(
@@ -39,5 +51,10 @@ export class TagResolver {
     @Args({ name: 'args', type: () => DeleteTagArgs }) args: DeleteTagArgs,
   ): Promise<Tag> {
     return await this.tagService.deleteTag(args);
+  }
+
+  @ResolveField(() => [Media])
+  async media(@Parent() { _id }: Tag): Promise<Media[]> {
+    return await this.mediaService.getMedia({ filter: { tagIds: [_id] } });
   }
 }
