@@ -4,6 +4,7 @@ import { ClientsModule, Transport } from '@nestjs/microservices';
 import { CommentService } from './comment.service';
 import { CommentResolver } from './comment.resolver';
 import { UserModule } from '../user/user.module';
+import { MediaModule } from '../media/media.module';
 
 @Module({
   imports: [
@@ -20,6 +21,7 @@ import { UserModule } from '../user/user.module';
       },
     ]),
     forwardRef(() => UserModule),
+    forwardRef(() => MediaModule),
   ],
   providers: [CommentService, CommentResolver],
   exports: [CommentService],

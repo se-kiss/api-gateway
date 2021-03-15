@@ -17,12 +17,15 @@ import {
 } from './comment.dto';
 import { User } from '../user/user.model';
 import { UserService } from '../user/user.service';
+import { MediaService } from '../media/media.service';
+import { Media } from '../media/media.model';
 
 @Resolver(() => Comment)
 export class CommentResolver {
   constructor(
     private readonly commentService: CommentService,
     private readonly userService: UserService,
+    private readonly mediaService: MediaService,
   ) {}
 
   @Query(() => [Comment])
@@ -68,6 +71,12 @@ export class CommentResolver {
   @ResolveField(() => User)
   async user(@Parent() { userId }: Comment): Promise<User> {
     const res = await this.userService.getUsers({ ids: [userId] });
+    return res[0];
+  }
+
+  @ResolveField(() => Media)
+  async media(@Parent() { mediaId }: Comment): Promise<Media> {
+    const res = await this.mediaService.getMedia({ ids: [mediaId] });
     return res[0];
   }
 }

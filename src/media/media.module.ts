@@ -5,6 +5,7 @@ import { MediaService } from './media.service';
 import { MediaResolver } from './media.resolver';
 import { TagModule } from '../tag/tag.module';
 import { PlaylistModule } from '../playlist/playlist.module';
+import { CommentModule } from '../comment/comment.module';
 
 @Module({
   imports: [
@@ -22,6 +23,7 @@ import { PlaylistModule } from '../playlist/playlist.module';
     ]),
     forwardRef(() => TagModule),
     forwardRef(() => PlaylistModule),
+    forwardRef(() => CommentModule),
   ],
   providers: [MediaService, MediaResolver],
   exports: [MediaService],
