@@ -1,4 +1,11 @@
-import { Resolver, Query, Mutation, Args } from '@nestjs/graphql';
+import {
+  Resolver,
+  Query,
+  Mutation,
+  Args,
+  ResolveField,
+  Parent,
+} from '@nestjs/graphql';
 import { PlaylistService } from './playlist.service';
 import { Playlist } from './playlist.model';
 import {
@@ -7,10 +14,15 @@ import {
   UpdatePlaylistArgs,
   DeletePlaylistArgs,
 } from './playlist.dto';
+import { Media } from '../media/media.model';
+import { MediaService } from '../media/media.service';
 
-@Resolver()
+@Resolver(() => Playlist)
 export class PlaylistResolver {
-  constructor(private readonly playlistService: PlaylistService) {}
+  constructor(
+    private readonly playlistService: PlaylistService,
+    private readonly mediaService: MediaService,
+  ) {}
 
   @Query(() => [Playlist])
   async playlists(
@@ -42,5 +54,10 @@ export class PlaylistResolver {
     args: DeletePlaylistArgs,
   ): Promise<Playlist> {
     return await this.playlistService.deletePlaylist(args);
+  }
+
+  @ResolveField(() => [Media])
+  async media(@Parent() { _id }: Playlist): Promise<Media[]> {
+    return await this.mediaService.getMedia({ filters: { playlistId: _id } });
   }
 }

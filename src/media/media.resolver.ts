@@ -14,14 +14,17 @@ import {
   DeleteMediaArgs,
 } from './media.dto';
 import { Media } from './media.model';
-import { Tag } from 'src/tag/tag.model';
-import { TagService } from 'src/tag/tag.service';
+import { Tag } from '../tag/tag.model';
+import { TagService } from '../tag/tag.service';
+import { PlaylistService } from '../playlist/playlist.service';
+import { Playlist } from '../playlist/playlist.model';
 
 @Resolver(() => Media)
 export class MediaResolver {
   constructor(
     private readonly mediaService: MediaService,
     private readonly tagService: TagService,
+    private readonly playlistService: PlaylistService,
   ) {}
 
   @Query(() => [Media])
@@ -56,5 +59,11 @@ export class MediaResolver {
   @ResolveField(() => [Tag])
   async tags(@Parent() { tagIds }: Media): Promise<Tag[]> {
     return await this.tagService.getTags({ ids: tagIds });
+  }
+
+  @ResolveField(() => Playlist)
+  async playlist(@Parent() { playlistId }: Media): Promise<Playlist> {
+    const res = await this.playlistService.getPlaylists({ ids: [playlistId] });
+    return res[0];
   }
 }
