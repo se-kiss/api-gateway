@@ -13,6 +13,7 @@ import { Tag } from './tag.model';
 export class TagService {
   private readonly tagService: TagGrpcService;
   public static defaultTagName = 'Others';
+  public static defaultTags = ['Others'];
 
   constructor(@Inject('TAG_PACKAGE') private client: ClientGrpc) {
     this.tagService = this.client.getService<TagGrpcService>('TagService');
