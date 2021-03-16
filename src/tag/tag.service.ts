@@ -12,6 +12,7 @@ import { Tag } from './tag.model';
 @Injectable()
 export class TagService {
   private readonly tagService: TagGrpcService;
+  public static defaultTagName = 'Others';
 
   constructor(@Inject('TAG_PACKAGE') private client: ClientGrpc) {
     this.tagService = this.client.getService<TagGrpcService>('TagService');
