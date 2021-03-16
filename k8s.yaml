@@ -34,6 +34,10 @@ spec:
               value: 'kiss-media:5000'
             - name: COMMENT_SERVICE
               value: 'kiss-media:5000'
+            - name: SUBSCRIPTION_SERVICE
+              value: 'kiss-reaction:5000'
+            - name: NOTIFICATION_SERVICE
+              value: 'kiss-reaction:5000'
           resources:
             limits:
               cpu: 250m

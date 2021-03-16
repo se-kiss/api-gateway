@@ -10,7 +10,10 @@ registerEnumType(NotificationType, { name: 'NotificationType' });
 export class Notification {
   @Field(() => String)
   _id: string;
-  
+
+  @Field(() => String)
+  userId: string; 
+
   @Field(() => NotificationType, { nullable: true })
   notificationType: string;
 

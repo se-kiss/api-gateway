@@ -3,6 +3,9 @@ import { Notification, NotificationType } from './notification.model';
 
 @InputType()
 export class CreateNotificationArgs {
+  @Field(() => String)
+  userId: string
+
   @Field(() => NotificationType)
   notificationType: NotificationType;
 }

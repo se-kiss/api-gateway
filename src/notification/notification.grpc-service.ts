@@ -3,7 +3,6 @@ import {
   CreateNotificationArgs,
   GetNotificationsArgs,
   NotificationId,
-  Notifications,
 } from './notification.dto';
 import { Notification } from './notification.model';
 
