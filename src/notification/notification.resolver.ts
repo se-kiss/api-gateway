@@ -20,7 +20,7 @@ import { NotificationService } from './notification.service';
 export class NotificationResolver {
   constructor(
     private readonly notificationService: NotificationService,
-    // private readonly userService: UserService
+    private readonly userService: UserService
     ) {}
 
   @Query(() => [Notification])
@@ -46,8 +46,15 @@ export class NotificationResolver {
     return await this.notificationService.deleteNotification(args);
   }
 
-  // @ResolveField(() => [User])
-  // async users(@Parent() { userId }: Notification): Promise<User[]> {
-  //   return await this.userService.getUsers({ ids: userId})
-  // }
+  @ResolveField(() => User)
+  async ownerUser(@Parent() { ownerId }: Notification): Promise<User> {
+    const res = await this.userService.getUsers({ ids: [ownerId]})
+    return res[0]
+  }
+
+  @ResolveField(() => [User])
+  async FollowingUser(@Parent() { followingUser }: Notification): Promise<User[]> {
+    const res = await this.userService.getUsers({ ids: followingUser})
+    return res
+  }
 }

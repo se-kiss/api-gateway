@@ -1,8 +1,9 @@
-import { Module } from '@nestjs/common';
+import { forwardRef, Module } from '@nestjs/common';
 import { NotificationService } from './notification.service';
 import { NotificationResolver } from './notification.resolver';
 import { ConfigModule } from '@nestjs/config';
 import { ClientsModule, Transport } from '@nestjs/microservices';
+import { UserModule } from 'src/user/user.module';
 
 @Module({
   imports: [
@@ -18,6 +19,7 @@ import { ClientsModule, Transport } from '@nestjs/microservices';
         },
       },
     ]),
+    forwardRef(() => UserModule),
   ],
   providers: [NotificationService, NotificationResolver],
 })
