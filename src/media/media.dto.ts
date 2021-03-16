@@ -17,7 +17,7 @@ export class CreateMediaArgs
   type: MediaType;
 
   @Field(() => String, { nullable: true })
-  url?: string;
+  videoId?: string;
 
   @Field(() => [String], { nullable: true })
   paragraph?: string[];
@@ -39,7 +39,7 @@ export class UpdateMediaArgs
   tagIds?: string[];
 
   @Field(() => String, { nullable: true })
-  url?: string;
+  videoId?: string;
 
   @Field(() => [String], { nullable: true })
   paragraph?: string[];
@@ -66,7 +66,7 @@ export class GetMediaArgs {
   ids?: string[];
 
   @Field(() => GetMediaFilter, { nullable: true })
-  filter?: GetMediaFilter;
+  filters?: GetMediaFilter;
 }
 
 @InputType()

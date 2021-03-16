@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: api
-          image: registry.gitlab.com/nestz671/kiss-container-registries/api:0.0.11
+          image: registry.gitlab.com/nestz671/kiss-container-registries/api:0.0.12
           imagePullPolicy: Always
           ports:
             - name: main-port
@@ -31,6 +31,8 @@ spec:
             - name: SEARCH_SERVICE
               value: 'kiss-media:5000'
             - name: TAG_SERVICE
+              value: 'kiss-media:5000'
+            - name: COMMENT_SERVICE
               value: 'kiss-media:5000'
           resources:
             limits:

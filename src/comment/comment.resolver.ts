@@ -1,4 +1,11 @@
-import { Resolver, Query, Args, Mutation } from '@nestjs/graphql';
+import {
+  Resolver,
+  Query,
+  Args,
+  Mutation,
+  ResolveField,
+  Parent,
+} from '@nestjs/graphql';
 import { CommentService } from './comment.service';
 import { Comment, CommentForMedia } from './comment.model';
 import {
@@ -8,10 +15,18 @@ import {
   UpdateCommentArgs,
   DeleteCommentArgs,
 } from './comment.dto';
+import { User } from '../user/user.model';
+import { UserService } from '../user/user.service';
+import { MediaService } from '../media/media.service';
+import { Media } from '../media/media.model';
 
-@Resolver()
+@Resolver(() => Comment)
 export class CommentResolver {
-  constructor(private readonly commentService: CommentService) {}
+  constructor(
+    private readonly commentService: CommentService,
+    private readonly userService: UserService,
+    private readonly mediaService: MediaService,
+  ) {}
 
   @Query(() => [Comment])
   async comments(
@@ -51,5 +66,17 @@ export class CommentResolver {
     args: DeleteCommentArgs,
   ): Promise<Comment> {
     return await this.commentService.deleteComment(args);
+  }
+
+  @ResolveField(() => User)
+  async user(@Parent() { userId }: Comment): Promise<User> {
+    const res = await this.userService.getUsers({ ids: [userId] });
+    return res[0];
+  }
+
+  @ResolveField(() => Media)
+  async media(@Parent() { mediaId }: Comment): Promise<Media> {
+    const res = await this.mediaService.getMedia({ ids: [mediaId] });
+    return res[0];
   }
 }

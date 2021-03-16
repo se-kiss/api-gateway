@@ -24,7 +24,7 @@ export class Media {
   type: MediaType;
 
   @Field(() => String, { nullable: true })
-  url?: string;
+  videoId?: string;
 
   @Field(() => [String], { defaultValue: [] })
   paragraph?: string[];

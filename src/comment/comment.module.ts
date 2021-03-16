@@ -1,8 +1,10 @@
-import { Module } from '@nestjs/common';
+import { Module, forwardRef } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { ClientsModule, Transport } from '@nestjs/microservices';
 import { CommentService } from './comment.service';
 import { CommentResolver } from './comment.resolver';
+import { UserModule } from '../user/user.module';
+import { MediaModule } from '../media/media.module';
 
 @Module({
   imports: [
@@ -12,13 +14,16 @@ import { CommentResolver } from './comment.resolver';
         name: 'COMMENT_PACKAGE',
         transport: Transport.GRPC,
         options: {
-          url: process.env.MEDIA_SERVICE,
+          url: process.env.COMMENT_SERVICE,
           package: 'comment',
           protoPath: 'protos/comment.proto',
         },
       },
     ]),
+    forwardRef(() => UserModule),
+    forwardRef(() => MediaModule),
   ],
   providers: [CommentService, CommentResolver],
+  exports: [CommentService],
 })
 export class CommentModule {}

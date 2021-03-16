@@ -1,8 +1,11 @@
-import { Module } from '@nestjs/common';
+import { Module, forwardRef } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { ClientsModule, Transport } from '@nestjs/microservices';
 import { MediaService } from './media.service';
 import { MediaResolver } from './media.resolver';
+import { TagModule } from '../tag/tag.module';
+import { PlaylistModule } from '../playlist/playlist.module';
+import { CommentModule } from '../comment/comment.module';
 
 @Module({
   imports: [
@@ -18,7 +21,11 @@ import { MediaResolver } from './media.resolver';
         },
       },
     ]),
+    forwardRef(() => TagModule),
+    forwardRef(() => PlaylistModule),
+    forwardRef(() => CommentModule),
   ],
   providers: [MediaService, MediaResolver],
+  exports: [MediaService],
 })
 export class MediaModule {}

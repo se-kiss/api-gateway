@@ -1,8 +1,9 @@
-import { Module } from '@nestjs/common';
+import { Module, forwardRef } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { ClientsModule, Transport } from '@nestjs/microservices';
 import { TagService } from './tag.service';
 import { TagResolver } from './tag.resolver';
+import { MediaModule } from '../media/media.module';
 
 @Module({
   imports: [
@@ -18,7 +19,9 @@ import { TagResolver } from './tag.resolver';
         },
       },
     ]),
+    forwardRef(() => MediaModule),
   ],
   providers: [TagService, TagResolver],
+  exports: [TagService],
 })
 export class TagModule {}

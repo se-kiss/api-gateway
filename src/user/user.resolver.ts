@@ -1,4 +1,11 @@
-import { Resolver, Query, Mutation, Args } from '@nestjs/graphql';
+import {
+  Resolver,
+  Query,
+  Mutation,
+  Args,
+  ResolveField,
+  Parent,
+} from '@nestjs/graphql';
 import { UserService } from './user.service';
 import { User } from './user.model';
 import {
@@ -7,10 +14,18 @@ import {
   UpdateUserArgs,
   DeleteUserArgs,
 } from './user.dto';
+import { PlaylistService } from '../playlist/playlist.service';
+import { Playlist } from '../playlist/playlist.model';
+import { CommentService } from '../comment/comment.service';
+import { Comment } from 'src/comment/comment.model';
 
-@Resolver()
+@Resolver(() => User)
 export class UserResolver {
-  constructor(private readonly userService: UserService) {}
+  constructor(
+    private readonly userService: UserService,
+    private readonly playlistService: PlaylistService,
+    private readonly commentService: CommentService,
+  ) {}
 
   @Query(() => [User])
   async user(
@@ -39,5 +54,17 @@ export class UserResolver {
     @Args({ name: 'args', type: () => DeleteUserArgs }) args: DeleteUserArgs,
   ): Promise<User> {
     return await this.userService.deleteUser(args);
+  }
+
+  @ResolveField(() => [Playlist])
+  async playlists(@Parent() { _id }: User): Promise<Playlist[]> {
+    return await this.playlistService.getPlaylists({
+      filters: { ownerId: _id },
+    });
+  }
+
+  @ResolveField(() => [Comment])
+  async comments(@Parent() { _id }: User): Promise<Comment[]> {
+    return await this.commentService.getComments({ filters: { userId: _id } });
   }
 }

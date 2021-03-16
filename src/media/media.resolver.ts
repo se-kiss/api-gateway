@@ -1,4 +1,11 @@
-import { Resolver, Query, Mutation, Args } from '@nestjs/graphql';
+import {
+  Resolver,
+  Query,
+  Mutation,
+  Args,
+  ResolveField,
+  Parent,
+} from '@nestjs/graphql';
 import { MediaService } from './media.service';
 import {
   GetMediaArgs,
@@ -7,10 +14,21 @@ import {
   DeleteMediaArgs,
 } from './media.dto';
 import { Media } from './media.model';
+import { Tag } from '../tag/tag.model';
+import { TagService } from '../tag/tag.service';
+import { PlaylistService } from '../playlist/playlist.service';
+import { Playlist } from '../playlist/playlist.model';
+import { CommentService } from '../comment/comment.service';
+import { Comment } from 'src/comment/comment.model';
 
-@Resolver()
+@Resolver(() => Media)
 export class MediaResolver {
-  constructor(private readonly mediaService: MediaService) {}
+  constructor(
+    private readonly mediaService: MediaService,
+    private readonly tagService: TagService,
+    private readonly playlistService: PlaylistService,
+    private readonly commentService: CommentService,
+  ) {}
 
   @Query(() => [Media])
   async media(
@@ -39,5 +57,21 @@ export class MediaResolver {
     @Args({ name: 'args', type: () => DeleteMediaArgs }) args: DeleteMediaArgs,
   ): Promise<Media> {
     return await this.mediaService.deleteMedia(args);
+  }
+
+  @ResolveField(() => [Tag])
+  async tags(@Parent() { tagIds }: Media): Promise<Tag[]> {
+    return await this.tagService.getTags({ ids: tagIds });
+  }
+
+  @ResolveField(() => Playlist)
+  async playlist(@Parent() { playlistId }: Media): Promise<Playlist> {
+    const res = await this.playlistService.getPlaylists({ ids: [playlistId] });
+    return res[0];
+  }
+
+  @ResolveField(() => [Comment])
+  async comments(@Parent() { _id }: Media): Promise<Comment[]> {
+    return await this.commentService.getComments({ filters: { mediaId: _id } });
   }
 }
