@@ -9,25 +9,43 @@ import {
   DeleteMediaArgs,
 } from './media.dto';
 import { Media } from './media.model';
+import { TagService } from '../tag/tag.service';
 
 @Injectable()
 export class MediaService {
   private mediaService: MediaGrpcService;
 
-  constructor(@Inject('MEDIA_PACKAGE') private client: ClientGrpc) {
+  constructor(
+    @Inject('MEDIA_PACKAGE') private client: ClientGrpc,
+    private readonly tagService: TagService,
+  ) {
     this.mediaService = this.client.getService<MediaGrpcService>(
       'MediaService',
     );
   }
 
-  async createMedia(payload: CreateMediaArgs): Promise<Media> {
+  async isDuplicateName(name: string, playlistId: string): Promise<boolean> {
     const mediaInPlaylist = await this.getMedia({
-      filters: { playlistId: payload.playlistId },
+      filters: { playlistId: playlistId },
     });
     for (const media of mediaInPlaylist) {
-      if (media.name === payload.name)
-        throw new ApolloError('Duplicate Media Name', 'DUPLICATE_FIELD');
+      if (media.name === name) return true;
     }
+    return false;
+  }
+
+  async defaultTagId(): Promise<string> {
+    const defaultTag = await this.tagService.getTags({
+      filter: { name: TagService.defaultTagName },
+    });
+    return defaultTag[0]._id;
+  }
+
+  async createMedia(payload: CreateMediaArgs): Promise<Media> {
+    if (await this.isDuplicateName(payload.name, payload.playlistId))
+      throw new ApolloError('Duplicate Media Name', 'DUPLICATE_FIELD');
+    if (payload.tagIds.length === 0)
+      payload.tagIds.push(await this.defaultTagId());
     return await this.mediaService.createMedia(payload).toPromise();
   }
 
