@@ -14,9 +14,6 @@ export class Playlist {
   @Field(() => String, { nullable: true })
   description?: string;
 
-  @Field(() => [String])
-  tagIds: string[];
-
   @Field(() => String)
   _createdAt: Date;
 
