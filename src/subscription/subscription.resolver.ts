@@ -6,6 +6,7 @@ import {
   CreateSubscriptionArgs,
   UpdateSubscriptionArgs,
   SubscriptionId,
+  UnFollowArgs,
 } from './subscription.dto';
 
 @Resolver()
@@ -38,12 +39,9 @@ export class SubscriptionResolver {
 
   @Mutation(() => Subscription)
   async unFollow(
-    @Args({ name: 'id', type: () => SubscriptionId })
-    id: SubscriptionId,
-
-    @Args({ name: 'id', type: () => SubscriptionId })
-    targetId: String,
+    @Args({ name: 'args', type: () => UnFollowArgs })
+    args: UnFollowArgs,
   ): Promise<Subscription> {
-    return await this.subscriptionService.unFollow(id,targetId);
+    return await this.subscriptionService.unFollow(args);
   }
 }

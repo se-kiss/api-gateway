@@ -8,10 +8,10 @@ export class Subscription {
   @Field(() => String)
   userId: string;
 
-  @Field(() => [String])
+  @Field(() => [String], { nullable: 'itemsAndList' })
   follower: string[];
 
-  @Field(() => [String])
+  @Field(() => [String], { nullable: 'itemsAndList' })
   following: string[];
 
   @Field(() => String)

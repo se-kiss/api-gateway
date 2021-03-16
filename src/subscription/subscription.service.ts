@@ -5,6 +5,7 @@ import {
   CreateSubscriptionArgs,
   GetSubscriptionsArgs,
   SubscriptionId,
+  UnFollowArgs,
   UpdateSubscriptionArgs,
 } from './subscription.dto';
 import { Subscription } from './subscription.model';
@@ -34,7 +35,7 @@ export class SubscriptionService {
     return await this.subscriptionService.updateSubscription(payload).toPromise();
   }
 
-  async unFollow(id: SubscriptionId, targetId: String): Promise<Subscription> {
-    return await this.subscriptionService.unFollow(id,targetId).toPromise();
+  async unFollow(args: UnFollowArgs): Promise<Subscription> {
+    return await this.subscriptionService.unFollow(args).toPromise();
   }
 }

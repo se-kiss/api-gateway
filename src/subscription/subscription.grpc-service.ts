@@ -5,6 +5,7 @@ import {
   SubscriptionId,
   Subscriptions,
   UpdateSubscriptionArgs,
+  UnFollowArgs
 } from './subscription.dto';
 import { Subscription } from './subscription.model';
 
@@ -13,5 +14,5 @@ export interface SubscriptionGrpcService {
   getSubscriptions(payload: GetSubscriptionsArgs): Observable<Subscriptions>;
   updateSubscription(payload: UpdateSubscriptionArgs): Observable<Subscription>
   deleteSubscription(payload: SubscriptionId): Observable<Subscription>;
-  unFollow(id: SubscriptionId,targetId: String): Observable<Subscription>
+  unFollow(payload: UnFollowArgs): Observable<Subscription>
 }

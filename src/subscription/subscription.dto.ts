@@ -20,6 +20,15 @@ export class SubscriptionId {
 }
 
 @InputType()
+export class UnFollowArgs {
+  @Field(() => String)
+  userId: string;
+
+  @Field(() => String)
+  targetId: string;
+}
+
+@InputType()
 export class GetSubscriptionsArgs {
   @Field(() => [String], { nullable: true })
   ids?: string[];
@@ -28,7 +37,7 @@ export class GetSubscriptionsArgs {
 @InputType()
 export class UpdateSubscriptionArgs {
   @Field(() => String)
-  _id: string;
+  userId: string;
 
   @Field(() => String, { nullable: true })
   follower?: string;
