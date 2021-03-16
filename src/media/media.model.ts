@@ -3,6 +3,7 @@ import { ObjectType, Field, registerEnumType } from '@nestjs/graphql';
 export enum MediaType {
   CLIP = 1,
   ARTICLE = 2,
+  PODCAST = 3,
 }
 registerEnumType(MediaType, { name: 'MediaType' });
 
