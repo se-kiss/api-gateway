@@ -10,9 +10,6 @@ export class CreatePlaylistArgs {
 
   @Field(() => String, { nullable: true })
   description?: string;
-
-  @Field(() => [String])
-  tagIds: string[];
 }
 
 @InputType()
@@ -25,18 +22,12 @@ export class UpdatePlaylistArgs {
 
   @Field(() => String, { nullable: true })
   description?: string;
-
-  @Field(() => [String], { nullable: true })
-  tagIds?: string[];
 }
 
 @InputType()
 export class GetPlaylistFilter {
   @Field(() => String, { nullable: true })
   ownerId?: string;
-
-  @Field(() => [String], { nullable: true })
-  tagIds?: string[];
 }
 
 @InputType()

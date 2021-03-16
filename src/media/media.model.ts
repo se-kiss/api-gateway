@@ -3,6 +3,7 @@ import { ObjectType, Field, registerEnumType } from '@nestjs/graphql';
 export enum MediaType {
   CLIP = 1,
   ARTICLE = 2,
+  PODCAST = 3,
 }
 registerEnumType(MediaType, { name: 'MediaType' });
 
@@ -25,6 +26,9 @@ export class Media {
 
   @Field(() => String, { nullable: true })
   videoId?: string;
+
+  @Field(() => String, { nullable: true })
+  podcastKey?: string;
 
   @Field(() => [String], { defaultValue: [] })
   paragraph?: string[];
