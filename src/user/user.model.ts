@@ -11,6 +11,9 @@ export class User {
   @Field(() => String)
   lastName: string;
 
+  @Field(() => String, { nullable: true })
+  profileImageId?: string;
+
   @Field(() => String)
   _createdAt: Date;
 
