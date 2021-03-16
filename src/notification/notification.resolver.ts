@@ -1,4 +1,13 @@
-import { Resolver, Query, Mutation, Args } from '@nestjs/graphql';
+import { 
+  Resolver, 
+  Query, 
+  Mutation, 
+  Args,
+  ResolveField,
+  Parent,
+ } from '@nestjs/graphql';
+import { UserService } from 'src/user/user.service';
+import { User } from '../user/user.model';
 import {
   CreateNotificationArgs,
   GetNotificationsArgs,
@@ -7,9 +16,12 @@ import {
 import { Notification } from './notification.model';
 import { NotificationService } from './notification.service';
 
-@Resolver()
+@Resolver(() => Notification)
 export class NotificationResolver {
-  constructor(private readonly notificationService: NotificationService) {}
+  constructor(
+    private readonly notificationService: NotificationService,
+    // private readonly userService: UserService
+    ) {}
 
   @Query(() => [Notification])
   async notification(
@@ -33,4 +45,9 @@ export class NotificationResolver {
   ): Promise<Notification> {
     return await this.notificationService.deleteNotification(args);
   }
+
+  // @ResolveField(() => [User])
+  // async users(@Parent() { userId }: Notification): Promise<User[]> {
+  //   return await this.userService.getUsers({ ids: userId})
+  // }
 }

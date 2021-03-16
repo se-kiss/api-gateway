@@ -12,7 +12,10 @@ export class Notification {
   _id: string;
 
   @Field(() => String)
-  userId: string; 
+  ownerId: string;
+
+  @Field(() => [String])
+  followingUser: string[]; 
 
   @Field(() => NotificationType, { nullable: true })
   notificationType: string;
