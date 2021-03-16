@@ -36,7 +36,6 @@ export class CommentResolver {
     return await this.commentService.getComments(args);
   }
 
-  @Query(() => [CommentForMedia])
   async commentsForMedia(
     @Args({ name: 'args', type: () => CommentsForMediaArgs })
     args: CommentsForMediaArgs,

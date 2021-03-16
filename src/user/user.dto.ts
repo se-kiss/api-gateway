@@ -9,6 +9,9 @@ export class CreateUserArgs
 
   @Field(() => String)
   lastName: string;
+
+  @Field(() => String, { nullable: true })
+  profileImageId?: string;
 }
 
 @InputType()
@@ -22,6 +25,9 @@ export class UpdateUserArgs
 
   @Field(() => String, { nullable: true })
   lastName?: string;
+
+  @Field(() => String, { nullable: true })
+  profileImageId?: string;
 }
 
 @InputType()

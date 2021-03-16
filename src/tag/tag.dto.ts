@@ -22,9 +22,18 @@ export class UpdateTagArgs
 }
 
 @InputType()
+export class GetTagsFilter {
+  @Field(() => String)
+  name: string;
+}
+
+@InputType()
 export class GetTagsArgs {
   @Field(() => [String], { nullable: true })
   ids?: string[];
+
+  @Field(() => GetTagsFilter, { nullable: true })
+  filter?: GetTagsFilter;
 }
 
 @InputType()
