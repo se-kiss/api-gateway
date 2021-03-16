@@ -27,6 +27,9 @@ export class Media {
   @Field(() => String, { nullable: true })
   videoId?: string;
 
+  @Field(() => String, { nullable: true })
+  podcastKey?: string;
+
   @Field(() => [String], { defaultValue: [] })
   paragraph?: string[];
 

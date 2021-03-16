@@ -19,6 +19,9 @@ export class CreateMediaArgs
   @Field(() => String, { nullable: true })
   videoId?: string;
 
+  @Field(() => String, { nullable: true })
+  podcastKey?: string;
+
   @Field(() => [String], { nullable: true })
   paragraph?: string[];
 
@@ -40,6 +43,9 @@ export class UpdateMediaArgs
 
   @Field(() => String, { nullable: true })
   videoId?: string;
+
+  @Field(() => String, { nullable: true })
+  podcastKey?: string;
 
   @Field(() => [String], { nullable: true })
   paragraph?: string[];
