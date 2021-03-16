@@ -3,6 +3,9 @@ import { Subscription } from './subscription.model';
 
 @InputType()
 export class CreateSubscriptionArgs {
+  @Field(() => String)
+  userId: string;
+
   @Field(() => [String], { nullable: true , defaultValue: [] })
   follower?: string[];
 

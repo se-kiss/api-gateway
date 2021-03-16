@@ -5,6 +5,9 @@ export class Subscription {
   @Field(() => String)
   _id: string;
 
+  @Field(() => String)
+  userId: string;
+
   @Field(() => [String])
   follower: string[];
 
