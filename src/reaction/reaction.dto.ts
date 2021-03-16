@@ -3,6 +3,9 @@ import { Reaction, ReactionType } from './reaction.model';
 
 @InputType()
 export class CreateReactionArgs {
+  @Field(() => String)
+  sourceId: string
+
   @Field(() => [String], { nullable: true })
   upVote?: string[];
 

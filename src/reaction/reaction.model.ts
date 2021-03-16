@@ -11,6 +11,9 @@ export class Reaction {
   @Field(() => String)
   _id: string;
 
+  @Field(() => String)
+  sourceId: string
+
   @Field(() => [String])
   upVote: string[];
 
