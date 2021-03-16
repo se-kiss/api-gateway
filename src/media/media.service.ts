@@ -1,5 +1,6 @@
 import { ClientGrpc } from '@nestjs/microservices';
 import { Injectable, Inject } from '@nestjs/common';
+import { ApolloError } from 'apollo-server-errors';
 import { MediaGrpcService } from './media.grpc-service';
 import {
   CreateMediaArgs,
@@ -20,6 +21,13 @@ export class MediaService {
   }
 
   async createMedia(payload: CreateMediaArgs): Promise<Media> {
+    const mediaInPlaylist = await this.getMedia({
+      filters: { playlistId: payload.playlistId },
+    });
+    for (const media of mediaInPlaylist) {
+      if (media.name === payload.name)
+        throw new ApolloError('Duplicate Media Name', 'DUPLICATE_FIELD');
+    }
     return await this.mediaService.createMedia(payload).toPromise();
   }
 
