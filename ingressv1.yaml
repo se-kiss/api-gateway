@@ -1,0 +1,31 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: kiss-ingress
+  annotations:
+    dev.okteto.com/generate-host: "true"
+spec:
+  rules:
+  - host: https://api-v1-ttduxz.cloud.okteto.net/
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: api-v1
+          servicePort: 80
+---
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: kiss-ingress-upload
+  annotations:
+    dev.okteto.com/generate-host: "true"
+spec:
+  rules:
+  - host: https://kiss-upload-ttduxz.cloud.okteto.net/
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: kiss-upload
+          servicePort: 80

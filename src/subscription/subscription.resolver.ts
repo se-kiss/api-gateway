@@ -1,4 +1,11 @@
-import { Resolver, Query, Mutation, Args, ResolveField, Parent } from '@nestjs/graphql';
+import { 
+  Resolver, 
+  Query,
+  Mutation, 
+  Args, 
+  ResolveField, 
+  Parent,
+} from '@nestjs/graphql';
 import { SubscriptionService } from './subscription.service';
 import { Subscription } from './subscription.model';
 import {
@@ -50,20 +57,8 @@ export class SubscriptionResolver {
   }
 
   @ResolveField(() => User)
-  async ownerUser(@Parent() { userId }: Subscription): Promise<User> {
-    const res = await this.userService.getUsers({ ids: [userId]})
+  async sourceUser(@Parent() { userId }: Subscription): Promise<User> {
+    const res = await this.userService.getUsers({ ids: [ userId ] })
     return res[0]
-  }
-
-  @ResolveField(() => [User])
-  async FollowingUser(@Parent() { following }: Subscription): Promise<User[]> {
-    const res = await this.userService.getUsers({ ids: following})
-    return res
-  }
-
-  @ResolveField(() => [User])
-  async FollowerUser(@Parent() { follower }: Subscription): Promise<User[]> {
-    const res = await this.userService.getUsers({ ids: follower})
-    return res
   }
 }
