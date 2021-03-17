@@ -11,10 +11,10 @@ export class SearchArgs {
   @Field(() => Number)
   size: number;
 
-  @Field(() => [String], { nullable: true })
+  @Field(() => [String], { nullable: true, defaultValue: [] })
   tags?: string[];
 
-  @Field(() => [String], { nullable: true })
+  @Field(() => [String], { nullable: true, defaultValue: [] })
   types?: string[];
 }
 

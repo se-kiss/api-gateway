@@ -3,6 +3,8 @@ import { ClientGrpc } from '@nestjs/microservices';
 import { SearchGrpcService } from './search.grpc-service';
 import { SearchBody, StatusCode } from './search.model';
 import { SearchArgs, DeleteArgs } from './search.dto';
+import { TagService } from '../tag/tag.service';
+import { MediaService } from '../media/media.service';
 
 @Injectable()
 export class SearchService {
@@ -19,6 +21,10 @@ export class SearchService {
   }
 
   async search(payload: SearchArgs): Promise<string[]> {
+    if (!payload.tags || payload.tags.length === 0)
+      for (const tag of TagService.defaultTags) payload.tags.push(tag);
+    if (!payload.types || payload.types.length === 0)
+      for (const type of MediaService.defaultTypes) payload.types.push(type);
     const { playlistIds } = await this.searchService
       .search(payload)
       .toPromise();

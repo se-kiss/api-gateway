@@ -14,6 +14,7 @@ import { TagService } from '../tag/tag.service';
 @Injectable()
 export class MediaService {
   private mediaService: MediaGrpcService;
+  public static defaultTypes = ['ARTICLE', 'CLIP', 'PODCAST'];
 
   constructor(
     @Inject('MEDIA_PACKAGE') private client: ClientGrpc,
