@@ -13,6 +13,7 @@ import { NotificationModule } from './notification/notification.module';
 import { SubscriptionModule } from './subscription/subscription.module';
 import { UserModule } from './user/user.module';
 import { CommentModule } from './comment/comment.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -29,9 +30,11 @@ import { CommentModule } from './comment/comment.module';
         SubscriptionModule,
         UserModule,
         CommentModule,
+        AuthModule,
       ],
       playground: true,
       autoSchemaFile: 'schema.gql',
+      context: ({ req }) => ({ headers: req.headers }),
     }),
     PingModule,
     MediaModule,
@@ -43,6 +46,7 @@ import { CommentModule } from './comment/comment.module';
     SubscriptionModule,
     UserModule,
     CommentModule,
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],
