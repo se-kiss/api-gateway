@@ -4,7 +4,6 @@ import { SubscriptionGrpcService } from './subscription.grpc-service';
 import {
   CreateSubscriptionArgs,
   GetSubscriptionsArgs,
-  SubscriptionId,
   UnFollowArgs,
   UpdateSubscriptionArgs,
 } from './subscription.dto';
