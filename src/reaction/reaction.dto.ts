@@ -23,9 +23,19 @@ export class ReactionId {
 }
 
 @InputType()
+export class GetReactionsFilter {
+  @Field(() => ReactionType, { nullable: true })
+  reactionType?: ReactionType
+}
+
+@InputType()
 export class GetReactionsArgs {
   @Field(() => [String], { nullable: true })
   ids?: string[];
+
+  @Field(() => GetReactionsFilter, { nullable: true })
+  filter?: GetReactionsFilter;
+  
 }
 
 @InputType()
