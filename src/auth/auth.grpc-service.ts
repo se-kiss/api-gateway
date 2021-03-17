@@ -1,6 +1,6 @@
 import { Observable } from 'rxjs';
-import { CreateIdentityArgs, LoginArgs, VerifyArgs } from './auth.dto';
-import { Identity, Token, Decoded } from './auth.model';
+import { CreateIdentityArgs, LoginArgs } from './auth.dto';
+import { Identity, Token } from './auth.model';
 
 export interface AuthGrpcService {
   register(payload: CreateIdentityArgs): Observable<Identity>;
