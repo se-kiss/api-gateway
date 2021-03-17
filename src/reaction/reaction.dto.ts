@@ -34,7 +34,7 @@ export class VoteArgs {
   userId: string;
 
   @Field(() => String)
-  targerId: string;
+  targetId: string;
 }
 
 @InputType()
