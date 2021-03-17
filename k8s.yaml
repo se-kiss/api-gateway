@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: api
-          image: registry.gitlab.com/nestz671/kiss-container-registries/api:0.0.24
+          image: registry.gitlab.com/nestz671/kiss-container-registries/api:0.0.25
           imagePullPolicy: Always
           ports:
             - name: main-port
@@ -38,6 +38,10 @@ spec:
               value: 'kiss-reaction:5000'
             - name: NOTIFICATION_SERVICE
               value: 'kiss-reaction:5000'
+            - name: AUTH_SERVICE
+              value: 'kiss-auth:5000'
+            - name: JWT_SECRET
+              value: 'KiSS'
           resources:
             limits:
               cpu: 250m
