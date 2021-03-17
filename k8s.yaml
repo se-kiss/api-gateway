@@ -38,6 +38,8 @@ spec:
               value: 'kiss-reaction:5000'
             - name: NOTIFICATION_SERVICE
               value: 'kiss-reaction:5000'
+            - name: AUTH_SERVICE
+              value: 'kiss-auth:5000'
             - name: JWT_SECRET
               value: 'KiSS'
           resources:
