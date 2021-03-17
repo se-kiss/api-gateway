@@ -1,9 +1,10 @@
-import { Module } from '@nestjs/common';
+import { Module, forwardRef } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { ClientsModule, Transport } from '@nestjs/microservices';
 import { AuthResolver } from './auth.resolver';
 import { AuthService } from './auth.service';
 import { AuthGuard } from './auth.gaurd';
+import { UserModule } from '../user/user.module';
 
 @Module({
   imports: [
@@ -19,6 +20,7 @@ import { AuthGuard } from './auth.gaurd';
         },
       },
     ]),
+    forwardRef(() => UserModule),
   ],
   providers: [AuthResolver, AuthService, AuthGuard],
 })
