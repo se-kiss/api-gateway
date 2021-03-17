@@ -23,7 +23,7 @@ export class AuthResolver {
     return await this.authService.register(args);
   }
 
-  @Query(() => Token)
+  @Mutation(() => Token)
   async login(
     @Args({ name: 'args', type: () => LoginArgs }) args: LoginArgs,
   ): Promise<Token> {
