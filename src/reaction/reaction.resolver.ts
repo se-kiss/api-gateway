@@ -66,4 +66,16 @@ export class ReactionResolver {
     const res = await this.userService.getUsers({ ids: [sourceId]})
     return res[0]
   }
+
+  @ResolveField(() => [User])
+  async userOfDownV(@Parent() { downVote }: Reaction): Promise<User[]> {
+    const res = await this.userService.getUsers({ ids: downVote})
+    return res
+  }
+
+  @ResolveField(() => [User])
+  async userOfUpV(@Parent() { upVote }: Reaction): Promise<User[]> {
+    const res = await this.userService.getUsers({ ids: upVote})
+    return res
+  }
 }
