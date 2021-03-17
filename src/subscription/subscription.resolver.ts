@@ -8,11 +8,14 @@ import {
   UnFollowArgs,
 } from './subscription.dto';
 import { User } from 'src/user/user.model';
+import { UserService } from 'src/user/user.service';
 
 @Resolver(() => Subscription)
 export class SubscriptionResolver {
-  userService: any;
-  constructor(private readonly subscriptionService: SubscriptionService) {}
+  constructor(
+    private readonly subscriptionService: SubscriptionService,
+    private readonly userService: UserService
+    ) {}
 
   @Query(() => [Subscription])
   async subscriptions(
