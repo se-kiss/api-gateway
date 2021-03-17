@@ -1,4 +1,13 @@
-import { Resolver, Query, Mutation, Args } from '@nestjs/graphql';
+import { 
+  Resolver,
+  Query,
+  Mutation,
+  Args,
+  ResolveField,
+  Parent, 
+} from '@nestjs/graphql';
+import { User } from 'src/user/user.model';
+import { UserService } from 'src/user/user.service';
 import {
   CreateReactionArgs,
   GetReactionsArgs,
@@ -8,9 +17,12 @@ import {
 import { Reaction } from './reaction.model';
 import { ReactionService } from './reaction.service';
 
-@Resolver()
+@Resolver(() => Reaction)
 export class ReactionResolver {
-  constructor(private readonly reactionService: ReactionService) {}
+  constructor(
+    private readonly reactionService: ReactionService,
+    private readonly userService: UserService
+    ) {}
 
   @Query(() => [Reaction])
   async reaction(
@@ -47,5 +59,11 @@ export class ReactionResolver {
     @Args({ name: 'args', type: () => VoteArgs }) args: VoteArgs,
   ): Promise<Reaction> {
     return await this.reactionService.upVote(args);
+  }
+
+  @ResolveField(() => User)
+  async ownerUser(@Parent() { sourceId }: Reaction): Promise<User> {
+    const res = await this.userService.getUsers({ ids: [sourceId]})
+    return res[0]
   }
 }
